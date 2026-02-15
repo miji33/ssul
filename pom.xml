@@ -105,6 +105,13 @@
                         <list>storage</list>
                     </attachList>
 
+                    <resourcesList>
+                        <list>.*\.fxml$</list>
+                        <list>.*\.css$</list>
+                        <list>.*\.png$</list>
+                        <list>.*\.jpg$</list>
+                    </resourcesList>
+
                     <reflectionList>
                         <list>org.sqlite.JDBC</list>
                         <list>org.sqlite.core.CoreConnection</list>
