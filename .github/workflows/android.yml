@@ -1,0 +1,45 @@
+name: Build Android APK
+
+# 언제 이 빌드 작업을 실행할 것인가?
+on:
+  push:
+    branches: [ "main", "master" ] # main이나 master 브랜치에 코드가 올라갈 때
+  workflow_dispatch: # GitHub 웹페이지에서 수동으로 버튼을 눌러 실행할 수 있게 함
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # GitHub이 제공하는 최신 리눅스 컴퓨터 사용
+
+    steps:
+      # 1. 내 GitHub 저장소의 코드 가져오기
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Java 17 세팅 (Gluon 최신 빌드 권장 환경)
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven' # 빌드 속도를 높이기 위해 메이븐 라이브러리 캐싱
+
+      # 3. GluonHQ에서 공식 제공하는 GraalVM 환경 자동 세팅 액션
+      - name: Setup GraalVM for Gluon
+        uses: gluonhq/setup-graalvm@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 4. 안드로이드 네이티브 빌드 시작 (여기서 시간이 가장 오래 걸립니다)
+      - name: Build Native Android App
+        run: mvn -Pandroid gluonfx:build
+
+      # 5. 완성된 앱을 APK 파일로 패키징
+      - name: Package into APK
+        run: mvn -Pandroid gluonfx:package
+
+      # 6. 만들어진 APK 파일을 우리가 다운로드할 수 있게 Artifact로 업로드
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Ssul-Pull-eo-jo-APK # 다운로드 받을 압축파일 이름
+          path: target/client/aarch64-android/gvm/*.apk # 추출할 APK 파일의 경로
