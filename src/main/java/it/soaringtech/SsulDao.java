@@ -125,9 +125,8 @@ public class SsulDao {
 
     public void update(Ssul ssul) {
         String sql = "UPDATE ssul SET title = ?, content = ?, category = ? WHERE id = ?";
-
-        // try-with-resources를 사용하여 자동으로 자원을 해제합니다.
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:ssul.db");
+        // 수정된 부분: DriverManager 대신 DBConnection.getConnection() 사용
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, ssul.getTitle());
@@ -139,7 +138,6 @@ public class SsulDao {
             if (result > 0) {
                 System.out.println("썰 수정 완료: " + ssul.getTitle());
             }
-
         } catch (SQLException e) {
             System.out.println("수정 중 오류 발생: " + e.getMessage());
             e.printStackTrace();
