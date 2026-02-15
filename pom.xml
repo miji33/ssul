@@ -110,6 +110,11 @@
                         <list>org.sqlite.core.CoreConnection</list>
                         <list>org.sqlite.core.NativeDB</list>
                         <list>org.sqlite.core.DB</list>
+
+                        <list>it.soaringtech.controller.MainController</list>
+                        <list>it.soaringtech.controller.WriteController</list>
+                        <list>it.soaringtech.controller.DetailController</list>
+                        <list>it.soaringtech.Ssul</list>
                     </reflectionList>
                     <jniList>
                         <list>org.sqlite.JDBC</list>
