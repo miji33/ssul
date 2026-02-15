@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <javafx.version>17.0.7</javafx.version> <glisten.version>6.2.3</glisten.version> <attach.version>4.0.17</attach.version> <gluonfx.plugin.version>1.0.21</gluonfx.plugin.version>
+        <javafx.version>17.0.7</javafx.version> <glisten.version>6.2.3</glisten.version> <attach.version>4.0.17</attach.version> <gluonfx.plugin.version>1.0.24</gluonfx.plugin.version>
         <mainClassName>it.soaringtech.SsulApp</mainClassName> </properties>
 
     <dependencies>
