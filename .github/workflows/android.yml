@@ -33,12 +33,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # [수정됨] 상세 에러 로그를 보기 위해 명령어 끝에 -X 를 추가합니다!
+      # [수정됨] 디버그 옵션(-X)을 지워서 로그를 다시 깔끔하게 만듭니다.
       - name: Build Native Android App
-        run: mvn gluonfx:build -X
+        run: mvn gluonfx:build
 
       - name: Package into APK
-        run: mvn gluonfx:package -X
+        run: mvn gluonfx:package
+
+      # [새로 추가됨] 패키징 실패 시 숨겨진 진짜 로그를 화면에 쫙 출력해 줍니다!
+      - name: Show Packaging Error Logs
+        if: failure()
+        run: |
+          echo "=== 🚨 패키징 상세 에러 로그 🚨 ==="
+          cat target/gluonfx/log/*.log
+          cat target/gluonfx/aarch64-android/gvm/log/*.log || true
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
