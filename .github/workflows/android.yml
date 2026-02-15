@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest # GitHub이 제공하는 최신 리눅스 컴퓨터 사용
 
     steps:
-      # 1. 내 GitHub 저장소의 코드 가져오기
+      # 1. 내 GitHub 저장소의 코드 가져오기 (v3 -> v4로 수정)
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # 2. Java 17 세팅 (Gluon 최신 빌드 권장 환경)
+      # 2. Java 17 세팅 (v3 -> v4로 수정)
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
@@ -39,7 +39,7 @@ jobs:
 
       # 6. 만들어진 APK 파일을 우리가 다운로드할 수 있게 Artifact로 업로드
       - name: Upload APK Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Ssul-Pull-eo-jo-APK # 다운로드 받을 압축파일 이름
           path: target/client/aarch64-android/gvm/*.apk # 추출할 APK 파일의 경로
