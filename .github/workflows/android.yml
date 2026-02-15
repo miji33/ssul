@@ -63,4 +63,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Ssul-Pull-eo-jo-APK
-          path: target/client/aarch64-android/gvm/*.apk
+          path: target/gluonfx/aarch64-android/gvm/*.apk # <-- client를 gluonfx로 수정!
