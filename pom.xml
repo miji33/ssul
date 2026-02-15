@@ -116,6 +116,11 @@
                         <list>org.sqlite.core.NativeDB</list>
                     </jniList>
                     <mainClass>${mainClassName}</mainClass>
+
+                    <nativeImageArgs>
+                        <list>--initialize-at-build-time=org.sqlite.util.ProcessRunner</list>
+                    </nativeImageArgs>
+
                 </configuration>
             </plugin>
         </plugins>
