@@ -46,7 +46,9 @@ jobs:
 
       # 5. 완성된 앱을 APK 파일로 패키징
       - name: Package into APK
-        run: mvn gluonfx:package
+        run: |
+          unset ANDROID_SDK_ROOT
+          mvn gluonfx:package
 
       # 6. 패키징 실패 시 로그 출력 (혹시 모를 상황 대비)
       - name: Show Packaging Error Logs
