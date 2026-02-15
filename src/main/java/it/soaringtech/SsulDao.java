@@ -33,19 +33,25 @@ public class SsulDao {
         List<Ssul> list = new ArrayList<>();
         String sql = "SELECT * FROM ssul ORDER BY id DESC"; // 최신순 정렬
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+        try (Connection conn = DBConnection.getConnection()) {
+            // 🌟🌟🌟 방어 코드 추가: DB 연결이 null이면 크래시를 막고 빈 리스트를 반환 🌟🌟🌟
+            if (conn == null) {
+                System.out.println("[DB 오류] 연결에 실패하여 빈 리스트를 반환합니다.");
+                return list;
+            }
 
-            while (rs.next()) {
-                Ssul ssul = new Ssul(
-                        rs.getInt("id"),
-                        rs.getString("title"),
-                        rs.getString("content"),
-                        rs.getString("category"),
-                        rs.getString("reg_date")
-                );
-                list.add(ssul);
+            try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Ssul ssul = new Ssul(
+                            rs.getInt("id"),
+                            rs.getString("title"),
+                            rs.getString("content"),
+                            rs.getString("category"),
+                            rs.getString("reg_date")
+                    );
+                    list.add(ssul);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
