@@ -17,8 +17,8 @@ import java.util.ResourceBundle;
 
 public class WriteController implements Initializable {
     // FXML 연결 확인
-    public Button btnSave;
-    public Button btnCancel;
+    @FXML public Button btnSave;
+    @FXML public Button btnCancel;
     @FXML private TextField txtTitle;
     @FXML private TextArea txtAreaContent;
     @FXML private ComboBox<String> comboCategory;
@@ -101,6 +101,7 @@ public class WriteController implements Initializable {
         ViewSwitcher.switchTo("main");
     }
 
+    @FXML
     public void onCancelClick(ActionEvent actionEvent) {
         System.out.println("[취소] 작성을 취소하고 메인으로 돌아갑니다.");
 

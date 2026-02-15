@@ -13,12 +13,12 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DetailController implements Initializable {
-    public TextField txtCategoryDetail;
-    public TextField txtTitleDetail;
-    public TextArea txtAreaContentDetail;
-    public Button btnBack;
-    public Button btnEdit;
-    public Button btnDDelete;
+    @FXML public TextField txtCategoryDetail;
+    @FXML public TextField txtTitleDetail;
+    @FXML public TextArea txtAreaContentDetail;
+    @FXML public Button btnBack;
+    @FXML public Button btnEdit;
+    @FXML public Button btnDDelete;
 
     public static Ssul currentSsul;
 
@@ -42,13 +42,14 @@ public class DetailController implements Initializable {
         txtAreaContentDetail.setEditable(false);
     }
 
-
+    @FXML
     public void onBackClick(ActionEvent actionEvent) {
         System.out.println("[상세] 목록으로 돌아갑니다.");
         currentSsul = null;
         ViewSwitcher.switchTo("main");
     }
 
+    @FXML
     public void onEditClick(ActionEvent actionEvent) {
         System.out.println("[상세] 수정 버튼 클릭! 글쓰기 화면으로 이동합니다.");
 
@@ -62,6 +63,7 @@ public class DetailController implements Initializable {
         }
     }
 
+    @FXML
     public void onDeleteClick(ActionEvent actionEvent) {
         if (currentSsul == null) return;
 

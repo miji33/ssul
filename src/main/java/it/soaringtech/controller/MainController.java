@@ -15,13 +15,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    public ToggleGroup categoryGroup;
-    public ToggleButton tbtnAll;
-    public ToggleButton tbtnFun;
-    public ToggleButton tbtnTouched;
-    public ToggleButton tbtnFear;
-    public ListView<Ssul> lvSsulList;
-    public Button fabWrite;
+    @FXML public ToggleGroup categoryGroup;
+    @FXML public ToggleButton tbtnAll;
+    @FXML public ToggleButton tbtnFun;
+    @FXML public ToggleButton tbtnTouched;
+    @FXML public ToggleButton tbtnFear;
+    @FXML public ListView<Ssul> lvSsulList;
+    @FXML public Button fabWrite;
     private ToggleButton btnFilter;
     private ObservableList<Ssul> ssulList = FXCollections.observableArrayList();
     private SsulDao dao = new SsulDao();
@@ -90,6 +90,7 @@ public class MainController implements Initializable {
         System.out.println("[메인] 리스트 갱신 완료: " + ssulList.size() + "개");
     }
 
+    @FXML
     public void onFilterClick(ActionEvent actionEvent) {
         ToggleButton selectedBtn = (ToggleButton) categoryGroup.getSelectedToggle();
 
@@ -123,6 +124,7 @@ public class MainController implements Initializable {
         ssulList.addAll(newList);
     }
 
+    @FXML
     public void onWriteClick(ActionEvent actionEvent) {
         System.out.println("[이벤트] 글쓰기 버튼 클릭! -> 글쓰기 화면으로 이동");
         ViewSwitcher.switchTo("write"); // write.fxml로 이동

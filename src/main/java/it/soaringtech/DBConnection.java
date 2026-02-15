@@ -17,6 +17,9 @@ public class DBConnection {
     public static Connection getConnection() {
         Connection conn = null;
         try {
+            // ★ 새로 추가: DB 드라이버 강제 호출 안전장치
+            Class.forName("org.sqlite.JDBC");
+
             // 1. 경로 설정
             String dbUrl = "jdbc:sqlite:";
             String dbFileName = "ssul.db";
