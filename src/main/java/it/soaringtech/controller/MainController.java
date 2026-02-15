@@ -57,7 +57,7 @@ public class MainController implements Initializable {
                 }
             }
         });
-
+//d
         // 3. [데이터 로드] DB에서 데이터 가져오기
         refreshList();
 
