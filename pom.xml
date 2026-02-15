@@ -106,10 +106,10 @@
                     </attachList>
 
                     <resourcesList>
-                        <list>.*\.fxml$</list>
-                        <list>.*\.css$</list>
-                        <list>.*\.png$</list>
-                        <list>.*\.jpg$</list>
+                        <list>.*\\.fxml$</list>
+                        <list>.*\\.css$</list>
+                        <list>.*\\.png$</list>
+                        <list>.*\\.jpg$</list>
                     </resourcesList>
 
                     <reflectionList>
