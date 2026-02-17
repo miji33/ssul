@@ -39,7 +39,7 @@ public class DBConnection {
             // 3. 테이블 확인 (연결할 때마다 체크해도 SQLite는 매우 빠름)
             createTableIfNotExists(conn);
 
-        } catch (Exception e) {
+        } catch (Throwable e) {
             e.printStackTrace();
             System.out.println("DB 연결 실패: " + e.getMessage());
         }
