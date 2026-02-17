@@ -40,6 +40,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 
 <View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.soaringtech.controller.MainController">
    <top>
@@ -60,10 +61,13 @@
       <ListView fx:id="lvSsulList" prefHeight="457.0" prefWidth="335.0" style="-fx-background-color: #fafafa;" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <Button fx:id="fabWrite" maxHeight="99.0" mnemonicParsing="false" onAction="#onWriteClick" prefHeight="99.0" prefWidth="40.0" style="-fx-background-color: #73c279; -fx-background-radius: 50; -fx-max-height: 50; -fx-max-width: 50; -fx-min-height: 50; -fx-min-width: 50;" text="+" translateY="-20.0" BorderPane.alignment="CENTER">
+      <Button fx:id="fabWrite" maxHeight="99.0" mnemonicParsing="false" onAction="#onWriteClick" prefHeight="99.0" prefWidth="40.0" style="-fx-background-color: #73c279; -fx-background-radius: 50; -fx-max-height: 50; -fx-max-width: 50; -fx-min-height: 50; -fx-min-width: 50;" text="+" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
       </Button>
    </bottom>
 </View>
