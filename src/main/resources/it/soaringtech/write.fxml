@@ -56,7 +56,7 @@
       </VBox>
    </center>
    <bottom>
-      <HBox alignment="CENTER" fillHeight="false" prefHeight="73.0" prefWidth="335.0" spacing="150.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="73.0" prefWidth="335.0" spacing="150.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onSaveClick" style="-fx-background-radius: 8; -fx-background-color: #73c279;" text="저장">
                <HBox.margin>
