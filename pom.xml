@@ -122,6 +122,8 @@
                         <list>it.soaringtech.controller.WriteController</list>
                         <list>it.soaringtech.controller.DetailController</list>
                         <list>it.soaringtech.Ssul</list>
+
+                        <list>javafx.scene.control.ComboBox</list>
                     </reflectionList>
                     <jniList>
                         <list>org.sqlite.JDBC</list>
