@@ -15,28 +15,25 @@ public class DBConnection {
     public static Connection getConnection() {
         Connection conn = null;
         try {
-            String dbUrl = "";
-            String dbFileName = "ssul.db";
+            Class.forName("org.sqlite.JDBC");
+            String dbUrl;
 
-            // 🌟 PC 환경과 모바일 환경을 완벽하게 분리!
             if (Platform.isDesktop()) {
-                // PC일 때는 기존 드라이버 사용
-                Class.forName("org.sqlite.JDBC");
-                dbUrl = "jdbc:sqlite:" + dbFileName;
+                dbUrl = "jdbc:sqlite:ssul.db";
             } else {
-                // 안드로이드일 때는 내장 DB용 SQLDroid 드라이버 사용
-                Class.forName("org.sqldroid.SQLDroidDriver");
+                // 🌟 모바일 환경: 안전한 내부 저장소 경로를 가져와서 SQLite 파일 생성
                 File storage = Services.get(StorageService.class)
                         .flatMap(s -> s.getPrivateStorage())
                         .orElseThrow(() -> new RuntimeException("저장소를 찾을 수 없습니다."));
-                // sqldroid 전용 url 완성
-                dbUrl = "jdbc:sqldroid:" + new File(storage, dbFileName).getAbsolutePath();
+
+                File dbFile = new File(storage, "ssul.db");
+                dbUrl = "jdbc:sqlite:" + dbFile.getAbsolutePath();
             }
 
             conn = DriverManager.getConnection(dbUrl);
             createTableIfNotExists(conn);
 
-        } catch (Throwable e) { // Exception 대신 최상위 방어막인 Throwable 적용
+        } catch (Throwable e) {
             e.printStackTrace();
             System.out.println("DB 연결 실패: " + e.getMessage());
         }
