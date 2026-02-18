@@ -10,17 +10,25 @@ public class SsulDao {
     public void insert(Ssul ssul) {
         String sql = "INSERT INTO ssul(title, content, category, reg_date) VALUES(?, ?, ?, ?)";
 
-        // try-with-resources: 자동으로 Connection과 Statement를 닫아줍니다.
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        // 1. 먼저 Connection만 가져옵니다.
+        try (Connection conn = DBConnection.getConnection()) {
 
-            pstmt.setString(1, ssul.getTitle());
-            pstmt.setString(2, ssul.getContent());
-            pstmt.setString(3, ssul.getCategory());
-            pstmt.setString(4, ssul.getRegDate());
+            // 🌟 2. 방어막 발동! conn이 null이면 튕기기 전에 안전하게 종료합니다.
+            if (conn == null) {
+                System.out.println("[DB 오류] 연결 실패로 저장을 취소합니다.");
+                return;
+            }
 
-            pstmt.executeUpdate();
-            System.out.println("[DB] 저장 완료: " + ssul.getTitle()); // 최소한의 확인 로그
+            // 3. conn이 안전하다는 걸 확인했으니, 이제 PreparedStatement를 만듭니다.
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, ssul.getTitle());
+                pstmt.setString(2, ssul.getContent());
+                pstmt.setString(3, ssul.getCategory());
+                pstmt.setString(4, ssul.getRegDate());
+
+                pstmt.executeUpdate();
+                System.out.println("[DB] 저장 완료: " + ssul.getTitle()); // 최소한의 확인 로그
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

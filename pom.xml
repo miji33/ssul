@@ -141,6 +141,8 @@
 
                     <nativeImageArgs>
                         <list>--initialize-at-build-time=org.sqlite.util.ProcessRunner</list>
+
+                        <list>--initialize-at-run-time=org.sqldroid</list>
                     </nativeImageArgs>
 
                 </configuration>
