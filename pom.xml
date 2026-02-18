@@ -63,6 +63,12 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.39.2.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.sqldroid</groupId>
+            <artifactId>sqldroid</artifactId>
+            <version>1.0.3</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -113,6 +119,8 @@
                     </resourcesList>
 
                     <reflectionList>
+                        <list>org.sqldroid.SQLDroidDriver</list>
+
                         <list>org.sqlite.JDBC</list>
                         <list>org.sqlite.core.CoreConnection</list>
                         <list>org.sqlite.core.NativeDB</list>
